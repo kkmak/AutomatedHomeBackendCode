@@ -10,6 +10,4 @@ public class SimulatedAutomatedHomeApplication {
         SpringApplication.run(SimulatedAutomatedHomeApplication.class, args);
     }
 
-
-
 }
