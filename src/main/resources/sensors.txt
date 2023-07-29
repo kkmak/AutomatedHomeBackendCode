@@ -1,0 +1,1 @@
+C.O detection|Moisture detection|Window state|Door state|Motion detector|Temperature sensor|Intensity ambient light|
