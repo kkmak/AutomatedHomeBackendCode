@@ -14,7 +14,7 @@ public class Sensor {
     @GeneratedValue
     public  long id;
     @Column
-    public String sensorName;
+    public String name;
     @Column
 
     public long minimumValue;
@@ -30,7 +30,7 @@ public class Sensor {
 
     public Sensor(long id, String sensorName, long minimumValue, long maximumValue, String roomWhereIsIt) {
         this.id = id;
-        this.sensorName = sensorName;
+        this.name = sensorName;
         this.minimumValue = minimumValue;
         this.maximumValue = maximumValue;
         this.roomWhereIsIt = roomWhereIsIt;

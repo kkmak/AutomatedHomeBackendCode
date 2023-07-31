@@ -17,19 +17,17 @@ public class SensorService {
     public SensorService(SensorRepository sensorRepository) {
         this.sensorRepository = sensorRepository;
         this.sensorList = new ArrayList<>();
-        //Sensor sensor = new Sensor(1, "temperature", 18, 26, "kitchen");
-        //sensorList.add(sensor);
+        Sensor sensor = new Sensor(1, "temperature", 18, 26, "kitchen");
+        sensorList.add(sensor);
         sensorRepository.saveAll(sensorList);
 
     }
 
-    public List<Sensor> getAllSensor() {
-        sensorRepository.findAll();
-        return sensorList;
+    public List<Sensor> getAllSensor(String name) {
+        return sensorRepository.filterSensors(name);
     }
 
     public Sensor add(Sensor sensor) {
-        sensorList.add(sensor);
         sensorRepository.save(sensor);
         return sensor;
     }
@@ -37,6 +35,10 @@ public class SensorService {
     public Sensor getSensorById(long id) {
         return sensorRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("sensor not found", id));
+    }
+
+    public List<Sensor>getBy(String sensorName) {
+        return sensorRepository.findByName(sensorName);
     }
 
     public Sensor delete(long id) {
@@ -49,7 +51,7 @@ public class SensorService {
         Sensor existingSensor = getSensorById(id);
         return add(Sensor.builder()
                 .id(id)
-                .sensorName(existingSensor.getSensorName())
+                .name(existingSensor.getName())
                 .minimumValue(sensor.getMinimumValue())
                 .maximumValue(sensor.getMaximumValue())
                 .roomWhereIsIt(existingSensor.getRoomWhereIsIt())

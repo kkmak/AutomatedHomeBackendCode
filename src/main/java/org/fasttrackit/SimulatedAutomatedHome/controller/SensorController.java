@@ -16,11 +16,11 @@ import java.util.List;
 @NoArgsConstructor
 public class SensorController {
     @Autowired
-    SensorService sensorService;
+    private SensorService sensorService;
 
     @GetMapping() // GET http://host:port/sensors
-    public List<Sensor> getAllSensor() {
-        return sensorService.getAllSensor();
+    public List<Sensor> getAllSensor(@RequestParam(required = false) String name) {
+        return sensorService.getAllSensor(name);
     }
 
     @GetMapping("/{id}") // GET http://host:port/sensors/1
@@ -37,6 +37,7 @@ public class SensorController {
     public Sensor deleteById(@PathVariable long id) {
         return sensorService.delete(id);
     }
+
     @PutMapping("/{id}")
     public Sensor updateSensor(@RequestBody Sensor sensor, @PathVariable long id) {
         return sensorService.update(sensor, id);
