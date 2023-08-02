@@ -19,9 +19,19 @@ public class SensorController {
     private SensorService sensorService;
 
     @GetMapping() // GET http://host:port/sensors
-    public List<Sensor> getAllSensor(@RequestParam(required = false) String name) {
-        return sensorService.getAllSensor(name);
+    public List<Sensor> getAllSensor(@RequestParam(required = false) String name, @RequestParam(required = false) String roomWhereIsIt) {
+        if (name != null){
+            return sensorService.getAllSensor(name);
+        }
+        return sensorService.getAllSensorByRoom(roomWhereIsIt);
     }
+
+
+  //  @GetMapping("/{roomWhereIsIt}")
+   // public List<Sensor> getAllSensorByRoom(@RequestParam(required = false) String roomWhereIsIt) {
+    //    return sensorService.getAllSensorByRoom(roomWhereIsIt);
+    //}
+
 
     @GetMapping("/{id}") // GET http://host:port/sensors/1
     public Sensor geSensorById(@PathVariable long id) {

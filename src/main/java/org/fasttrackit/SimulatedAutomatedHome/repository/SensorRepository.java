@@ -12,8 +12,11 @@ import java.util.List;
 
 @Repository
 public interface SensorRepository extends JpaRepository<Sensor, Long> {
-    List<Sensor>findByName(String sensorName);
+//    List<Sensor>findByName(String sensorName);
 
     @Query("select s from Sensor s where (:name = null or lower(s.name) like lower(concat('%',:name,'%')))")
     List<Sensor> filterSensors(@Param("name") String name);
+
+    @Query("select d from Sensor d where (:roomWhereIsIt = null or lower(d.roomWhereIsIt) like lower(concat('%',:roomWhereIsIt,'%')))")
+    List<Sensor> filterSensorsByRoom(@Param("roomWhereIsIt") String roomWhereIsIt);
 }

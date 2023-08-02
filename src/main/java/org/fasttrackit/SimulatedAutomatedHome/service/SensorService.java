@@ -27,6 +27,11 @@ public class SensorService {
         return sensorRepository.filterSensors(name);
     }
 
+
+    public List<Sensor> getAllSensorByRoom(String roomWhereIsIt) {
+        return sensorRepository.filterSensorsByRoom(roomWhereIsIt);
+    }
+
     public Sensor add(Sensor sensor) {
         sensorRepository.save(sensor);
         return sensor;
@@ -37,9 +42,10 @@ public class SensorService {
                 .orElseThrow(() -> new ResourceNotFoundException("sensor not found", id));
     }
 
-    public List<Sensor>getBy(String sensorName) {
-        return sensorRepository.findByName(sensorName);
-    }
+ //   public List<Sensor>getBy(String sensorName) {
+  //      return sensorRepository.findByName(sensorName);
+   // }
+
 
     public Sensor delete(long id) {
         Sensor sensor = getSensorById(id);
