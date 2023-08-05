@@ -22,13 +22,11 @@ public class EventService {
     public EventService(EventRepository eventRepository) {
         this.eventRepository = eventRepository;
         this.eventList = new ArrayList<>();
-       // Event event = new Event(1, "Temperature", 23);
-       // eventList.add(event);
         eventRepository.saveAll(eventList);
     }
 
     public List<Event> getAllEvents() {
-        return sensorService.getAllSensor().stream().filter(Sensor::isAlerting).map(sensor -> new Event(sensor.getName(),sensor.getActualValue())).toList();
+        return sensorService.getAllSensor().stream().filter(Sensor::isAlerting).map(sensor -> new Event(sensor.getId(), sensor.getName(),sensor.getActualValue())).toList();
     }
 
     public Event add(Event event) {
@@ -37,13 +35,13 @@ public class EventService {
         return event;
     }
 
-    public Event geEventById(long id) {
+    public Event getEventById(long id) {
         return eventRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("event not found", id));
     }
 
     public Event delete(long id) {
-        Event event = geEventById(id);
+        Event event = getEventById(id);
         eventRepository.deleteById(id);
         return event;
     }

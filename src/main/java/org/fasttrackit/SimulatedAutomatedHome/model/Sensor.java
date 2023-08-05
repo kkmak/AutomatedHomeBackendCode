@@ -30,19 +30,6 @@ public class Sensor {
     public String roomWhereIsIt;
 
 
-    @JsonIgnore
-    @ManyToOne //COUNTRY_ID -> FK -> COUNTRY(ID)
-    private Room room;
-
-    public Sensor(long id, String sensorName, long minimumValue, long actualValue, long maximumValue, String roomWhereIsIt) {
-        this.id = id;
-        this.name = sensorName;
-        this.minimumValue = minimumValue;
-        this.actualValue = actualValue;
-        this.maximumValue = maximumValue;
-        this.roomWhereIsIt = roomWhereIsIt;
-    }
-
     public boolean isAlerting() {
         return actualValue < minimumValue || actualValue > maximumValue;
     }

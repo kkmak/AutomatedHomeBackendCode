@@ -17,8 +17,6 @@ public class SensorService {
     public SensorService(SensorRepository sensorRepository) {
         this.sensorRepository = sensorRepository;
         this.sensorList = new ArrayList<>();
-        Sensor sensor = new Sensor(1,"temperature", 18, 22, 26,"kitchen");
-        sensorList.add(sensor);
         sensorRepository.saveAll(sensorList);
 
     }
@@ -45,11 +43,6 @@ public class SensorService {
         return sensorRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("sensor not found", id));
     }
-
- //   public List<Sensor>getBy(String sensorName) {
-  //      return sensorRepository.findByName(sensorName);
-   // }
-
 
     public Sensor delete(long id) {
         Sensor sensor = getSensorById(id);

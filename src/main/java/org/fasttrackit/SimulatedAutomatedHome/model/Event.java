@@ -15,9 +15,7 @@ public class Event {
     private String triggerSensor;
     @Column
     private long dataSensor;
-    @JsonIgnore
-    @ManyToOne //COUNTRY_ID -> FK -> COUNTRY(ID)
-    private Room room;
+
 
     public Event(long id, String triggerSensor, long dataSensor) {
         this.id = id;

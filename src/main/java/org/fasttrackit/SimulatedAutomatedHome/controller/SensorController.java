@@ -11,7 +11,6 @@ import java.util.List;
 
 @RestController
 @RequestMapping("sensors") // http://host:port/sensors
-
 @AllArgsConstructor
 @NoArgsConstructor
 public class SensorController {
@@ -25,13 +24,6 @@ public class SensorController {
         }
         return sensorService.getAllSensorByRoom(roomWhereIsIt);
     }
-
-
-  //  @GetMapping("/{roomWhereIsIt}")
-   // public List<Sensor> getAllSensorByRoom(@RequestParam(required = false) String roomWhereIsIt) {
-    //    return sensorService.getAllSensorByRoom(roomWhereIsIt);
-    //}
-
 
     @GetMapping("/{id}") // GET http://host:port/sensors/1
     public Sensor geSensorById(@PathVariable long id) {
