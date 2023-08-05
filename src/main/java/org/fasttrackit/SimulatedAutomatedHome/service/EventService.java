@@ -4,6 +4,7 @@ import org.fasttrackit.SimulatedAutomatedHome.exception.ResourceNotFoundExceptio
 import org.fasttrackit.SimulatedAutomatedHome.model.Event;
 import org.fasttrackit.SimulatedAutomatedHome.model.Sensor;
 import org.fasttrackit.SimulatedAutomatedHome.repository.EventRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.w3c.dom.events.EventException;
 
@@ -15,6 +16,8 @@ import java.util.List;
 public class EventService {
     public List<Event> eventList;
     private EventRepository eventRepository;
+    @Autowired
+    private SensorService sensorService;
 
     public EventService(EventRepository eventRepository) {
         this.eventRepository = eventRepository;
@@ -25,7 +28,7 @@ public class EventService {
     }
 
     public List<Event> getAllEvents() {
-        return eventList;
+        return sensorService.getAllSensor().stream().filter(Sensor::isAlerting).map(sensor -> new Event(sensor.getName(),sensor.getActualValue())).toList();
     }
 
     public Event add(Event event) {

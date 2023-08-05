@@ -24,4 +24,9 @@ public class Event {
         this.triggerSensor = triggerSensor;
         this.dataSensor = dataSensor;
     }
+
+    public Event(String triggeredSensor, long actualValue) {
+        this.triggerSensor = triggeredSensor;
+        this.dataSensor = actualValue;
+    }
 }

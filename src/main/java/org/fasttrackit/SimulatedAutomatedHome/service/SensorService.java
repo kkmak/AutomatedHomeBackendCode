@@ -17,10 +17,14 @@ public class SensorService {
     public SensorService(SensorRepository sensorRepository) {
         this.sensorRepository = sensorRepository;
         this.sensorList = new ArrayList<>();
-        Sensor sensor = new Sensor(1, "temperature", 18, 26, "kitchen");
+        Sensor sensor = new Sensor(1,"temperature", 18, 22, 26,"kitchen");
         sensorList.add(sensor);
         sensorRepository.saveAll(sensorList);
 
+    }
+
+    public List<Sensor> getAllSensor() {
+        return sensorRepository.findAll();
     }
 
     public List<Sensor> getAllSensor(String name) {
